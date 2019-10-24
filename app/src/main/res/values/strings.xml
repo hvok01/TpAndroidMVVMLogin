@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TpAndroidMVVMLogin</string>
+    <string name="usuario">usuario</string>
+    <string name="clave">clave</string>
+    <string name="entrar">entrar</string>
+    <string name="registrar">registrar</string>
+    <string name="documento">Documento</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="correo">Correo</string>
+    <string name="password">Clave</string>
+    <string name="guardar">Guardar</string>
+</resources>
