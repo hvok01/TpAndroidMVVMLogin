@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText usuarioCorreo, clave;
     private Button logear, registar;
     private ViewModelMain vmm;
-    ApiClient api;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +31,7 @@ public class MainActivity extends AppCompatActivity {
         registar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean registrar;
                 Intent i = new Intent(getApplicationContext(),RegistrarActivity.class);
-                boolean vieneRegistrar = true;
                 i.putExtra("registrar",true);
                 startActivity(i);
             }
@@ -42,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         logear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Usuario res = api.login(getApplicationContext(),usuarioCorreo.getText()+"",clave.getText()+"");
+                Usuario res = vmm.enviarUsuario(getApplicationContext(),usuarioCorreo.getText()+"",clave.getText()+"");
                 if(res == null) {
                     Toast.makeText(MainActivity.this, "No existe", Toast.LENGTH_SHORT).show();
                 } else {
