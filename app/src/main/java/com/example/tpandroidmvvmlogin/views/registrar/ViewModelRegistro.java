@@ -26,9 +26,11 @@ public class ViewModelRegistro extends ViewModel {
         api.guardar(context, us);
     }
 
-    public Usuario ver(Context context) {
+    public void ver(Context context) {
         Usuario us;
         us = api.leer(context);
-        return  us;
+        if(us!=null){
+            mldUsuario.setValue(us);
+        }
     }
 }

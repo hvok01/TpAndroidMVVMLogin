@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -38,35 +39,10 @@ public class RegistrarActivity extends AppCompatActivity {
                     documento.setText(usuario.getDni()+"");
                     correo.setText(usuario.getCorreo());
                     clave.setText(usuario.getClave());
-                } else {
-                    nombre.setText("");
-                    apellido.setText("");
-                    documento.setText("");
-                    correo.setText("");
-                    clave.setText("");
                 }
             }
         });
-
-        Intent x = getIntent();
-
-        boolean vieneDeRegistrar = x.getBooleanExtra("registrar",false);
-
-        if(vieneDeRegistrar) {
-            nombre.setText("");
-            apellido.setText("");
-            documento.setText("");
-            correo.setText("");
-            clave.setText("");
-        } else {
-            Usuario us = vmr.ver(getApplicationContext());
-            nombre.setText(us.getNombre());
-            apellido.setText(us.getApellido());
-            documento.setText(us.getDni()+"");
-            correo.setText(us.getCorreo());
-            clave.setText(us.getClave());
-        }
-
+        vieneDe(this);
 
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +55,23 @@ public class RegistrarActivity extends AppCompatActivity {
                 vmr.alta(getApplicationContext(),doc,nom,ape,corr,clav);
             }
         });
+    }
+
+    private void vieneDe(Context context) {
+
+        Intent x = getIntent();
+
+        final boolean vieneDeRegistrar = x.getBooleanExtra("registrar",false);
+
+        if(vieneDeRegistrar) {
+            nombre.setText("");
+            apellido.setText("");
+            documento.setText("");
+            correo.setText("");
+            clave.setText("");
+        } else {
+            vmr.ver(context);
+        }
     }
 
     private void inicializar() {
